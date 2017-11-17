@@ -65,6 +65,16 @@ end
 const _rainbowColors = [colorant"purple", colorant"blue", colorant"green", colorant"orange", colorant"red"]
 const _testColors = [colorant"darkblue", colorant"blueviolet",  colorant"darkcyan",colorant"green",
                      darken(colorant"yellow",0.3), colorant"orange", darken(colorant"red",0.2)]
+# conservative 7-color palette from https://www.nature.com/articles/nmeth.1618?WT.ec_id=NMETH-201106
+const _colorblindColors = [
+    RGB(([230, 159,   0] / 255)...), # orange
+    RGB(([ 86, 180, 233] / 255)...), # sky blue
+    RGB(([  0, 158, 115] / 255)...), # blueish green
+    RGB(([240, 228,  66] / 255)...), # yellow
+    RGB(([  0, 114, 178] / 255)...), # blue
+    RGB(([213,  94,   0] / 255)...), # vermillion
+    RGB(([204, 121, 167] / 255)...), # reddish purple
+]
 
 const misc = ColorLibrary(Dict(:default => :sequential, :sequential => :heat, :diverging => :bluesreds), Dict(
     :reds         => [colorant"lightpink", colorant"darkred"],
@@ -78,6 +88,7 @@ const misc = ColorLibrary(Dict(:default => :sequential, :sequential => :heat, :d
     :darkrainbow  => map(darken, _rainbowColors),
     :darktest     => _testColors,
     :lighttest    => map(c -> lighten(c, 0.3), _testColors),
+    :colorblind   => _colorblindColors,
   ))
 
 
