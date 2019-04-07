@@ -178,11 +178,8 @@ function _color_list(arg, ::Nothing)
 end
 
 function _color_list(arg, alpha)
-    colors = cgrad_colors(arg)
-    for i in eachindex(colors)
-        colors[i] = RGBA{Float64}(convert(RGB{Float64}, colors[i]), alpha)
-    end
-    colors
+    rgb_colors = convert.(RGB{Float64}, cgrad_colors(arg))
+    return RGBA{Float64}.(rgb_colors, alpha)
 end
 
 cgrad(arg::Symbol, cl::Symbol, values; kw...) = cgrad(cgrad_colors(arg, color_library = cl), values; kw...)
